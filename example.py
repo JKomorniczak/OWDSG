@@ -16,24 +16,23 @@ stream = OWDSG(n_drifts = 2,
             percentage_novel = 0.2,
             random_state = 4567, 
             hide_label = False,
-            weights = [0.25,0.5])
+            weights = [0.25,0.75])
 
 
 # Get first data chunk
 X, y = stream.get_chunk(0)
 print('chunk shape:', X.shape)
-print('unique labels:', np.unique(y, return_counts=True))
+print('unique labels (first chunk):', np.unique(y, return_counts=True))
 
 # Get last data chunk
 X, y = stream.get_chunk(n_chunks-1)
-print('chunk shape:', X.shape)
-print('unique labels:', np.unique(y, return_counts=True))
+print('unique labels(last chunk):', np.unique(y, return_counts=True))
 
 # Get ground-truth of concept drift
-print(stream.get_drift_gt())
+print('Concept drift in chunks:', stream.get_drift_gt())
 
 # Get ground-truth of novelty
-print(stream.get_novel_gt())
+print('Novelty in chunks:', stream.get_novel_gt())
 
 # Exemplary experiment -- UC recognition with MLP and support thresholding
 clf = MLPClassifier(hidden_layer_sizes=(100))
@@ -60,7 +59,7 @@ for chunk in range(n_chunks):
         # Calculate outer score
         outer_score = balanced_accuracy_score(known_mask, preds_outer)
         scores.append(outer_score)
-        
+            
         ### Train
         [clf.partial_fit(_X_known, _y_known) for i in range(10)]
 
@@ -68,13 +67,15 @@ for chunk in range(n_chunks):
 # Plot results
 fig, ax = plt.subplots(1,1,figsize=(10,5))
 
-ax.plot(np.arange(1,n_chunks), scores, color='black', label='outer score')
+ax.plot(np.arange(1,n_chunks), scores, color='r')
 ax.set_xticks(np.concatenate([stream.get_drift_gt(), stream.get_novel_gt()]))
 
-ax.grid(ls=':', color='r')
+ax.grid(ls=':')
 ax.set_xlim(0,n_chunks)
 ax.set_xlabel('chunk')
 ax.set_ylabel('outer score')
-
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+    
 plt.tight_layout()
 plt.savefig('example.png')
