@@ -1,16 +1,50 @@
 import numpy as np
 from sklearn.datasets import make_classification
 
-
 class OWDSG:
     def __init__(self, n_drifts, n_novel, even_gt=True, 
                  hide_label=False, 
-                 n_features=10, n_informative = 10, 
+                 n_features=10, n_informative = 10,
                  percentage_novel=0.1, 
                  n_classes=2, weights=None,
                  n_chunks=200, chunk_size=200, 
                  n_clusters_per_class=1, class_sep=1.,
                  random_state = None, allow_projection=True):
+        
+        """ Non-stationary data stream generator combining the events of concept drift and novel class ocurrence.
+
+        :param n_drifts: Number of concept drifts in the stream
+        :param n_novel: Number of new classes in the stream
+        :param even_gt: The boolean value describing if the concept drifts and the moments on new class novelties are equally distributed across the stream.
+        :param hide_label: The boolean value describing if labels of all unknown classes are unified to a common value.
+        :param n_features: Dimensionality of the data
+        :param n_informative: Number of informative features
+        :param percentage_novel: The proportion of a chunk that will be occupied by novel class samples
+        :param n_classes: Number of known classes
+        :param weights: Proportions of known classes
+        :param n_chunks: Length of the data stream in batches
+        :param chunk_size:  Number of problem samples in each batch
+        :param n_clusters_per_class: Number of clusters in each class
+        :param class_sep: The side lengths of a hypercube for data generation
+        :param random_state: Random seed for data generation 
+        :param allow_projection: The boolean value determining if the random feature projections can be performed. If the value is False, the generation process will result in an error when prerequisites are not satisfied. Otherwise, the method will perform projections to a requested dimensionality.
+
+        :type n_drifts: integer
+        :type n_novel: integer
+        :type even_gt: boolean, optional (default=True)
+        :type hide_label: boolean, optional (default=False)
+        :type n_features: integer, optional (default=10)
+        :type n_informative: integer, optional (default=10)
+        :type percentage_novel: float, optional (default=0.1)
+        :type n_classes: integer, optional (default=2)
+        :type weights: tuple, optional (balanced by default)
+        :type n_chunks: integer, optional (default=200)
+        :type chunk_size: integer, optional (default=200)
+        :type n_clusters_per_class: integer, optional (default=1)
+        :type class_sep: float, optional (default=1)
+        :type random_state: integer, optional (rdefault=None)
+        :type allow_projection: boolean, optional (default=True)
+        """
         
         self.n_drifts = n_drifts
         self.n_novel = n_novel
