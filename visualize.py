@@ -56,4 +56,4 @@ for i_id, i_chunk in enumerate(chunks_vis):
 
 
 plt.tight_layout()
-plt.savefig('scatter.png')
+plt.savefig('figures/scatter.png')

@@ -78,4 +78,4 @@ ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
     
 plt.tight_layout()
-plt.savefig('example.png')
+plt.savefig('figures/example.png')

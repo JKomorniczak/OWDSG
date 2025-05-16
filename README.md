@@ -2,7 +2,7 @@
 
 The `OWDSG` is a non-stationary data stream generator combining the concept drift and novel class ocurrence. The generator can be used to prepare experiments in the task of *concept drift detection*, *novely detection* and *open set recognition*. The base sample distrubutions are genrated using *Madelon* generator evaliable in `scikit-learn` and transformed into a data stream.
 
-![](scatter.png)
+![](figures/scatter.png)
 
 ## Quick start guide
 
@@ -31,4 +31,4 @@ stream.get_novel_gt()
 
 The simple experiment presenting the use of data stream in Open Set Recognition task is available in `example.py' file. The generated data strea was used to estimate the ability of the MLP classifier to distinguish between known classes (KC) and novel, unknown objects (UC). the results of the *outer score* for this exemplary experiment are presented below.
 
-<img src="example.png" width="700"/>
+<img src="figures/example.png" width="700"/>
