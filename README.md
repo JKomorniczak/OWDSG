@@ -75,3 +75,18 @@ The [`visualize_real.py`](visualize_real.py) file shows the PCA projection of se
 - [`OWDSG.py`](OWDSG.py) -- the generator,
 - [`example.py`](example.py), [`visualize.py`](visualize.py) -- experiment and visualization for a synthetic stream,
 - [`example_real.py`](example_real.py), [`visualize_real.py`](visualize_real.py) -- experiment and visualization for a stream built from a real dataset.
+
+
+## Citation policy
+If you use the generator in your scientific research, we would greatly appreciate including the following citation:
+
+```
+@inproceedings{komorniczak2025synthetic,
+  title={Synthetic non-stationary data streams for recognition of the unknown},
+  author={Komorniczak, Joanna},
+  booktitle={Joint European Conference on Machine Learning and Knowledge Discovery in Databases},
+  pages={143--159},
+  year={2025},
+  organization={Springer}
+}
+```
